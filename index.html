@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Word Encryption/Decryption</title>
+    <script>
+        function encryptWord() {
+            var word = document.getElementById("word").value;
+            var encryptedWord = "";
+
+            for (var i = 0; i < word.length; i++) {
+                var char = word.charAt(i);
+                var encryptedChar = char;
+
+                switch (char) {
+                    case "e":
+                        encryptedChar = "enter";
+                        break;
+                    case "i":
+                        encryptedChar = "imes";
+                        break;
+                    case "a":
+                        encryptedChar = "ai";
+                        break;
+                    case "o":
+                        encryptedChar = "ober";
+                        break;
+                    case "u":
+                        encryptedChar = "ufat";
+                        break;
+                    default:
+                        break;
+                }
+
+                encryptedWord += encryptedChar;
+            }
+
+            document.getElementById("result").textContent = "Encrypted Word: " + encryptedWord;
+        }
+
+        function decryptWord() {
+            var encryptedWord = document.getElementById("encrypted-word").value;
+            var decryptedWord = "";
+
+            var i = 0;
+            while (i < encryptedWord.length) {
+                var char = encryptedWord.charAt(i);
+                var decryptedChar = char;
+
+                switch (char) {
+                    case "e":
+                        if (encryptedWord.slice(i, i + 5) === "enter") {
+                            decryptedChar = "e";
+                            i += 4;
+                        }
+                        break;
+                    case "i":
+                        if (encryptedWord.slice(i, i + 4) === "imes") {
+                            decryptedChar = "i";
+                            i += 3;
+                        }
+                        break;
+                    case "a":
+                        if (encryptedWord.slice(i, i + 2) === "ai") {
+                            decryptedChar = "a";
+                            i += 1;
+                        }
+                        break;
+                    case "o":
+                        if (encryptedWord.slice(i, i + 4) === "ober") {
+                            decryptedChar = "o";
+                            i += 3;
+                        }
+                        break;
+                    case "u":
+                        if (encryptedWord.slice(i, i + 4) === "ufat") {
+                            decryptedChar = "u";
+                            i += 3;
+                        }
+                        break;
+                    default:
+                        break;
+                }
+
+                decryptedWord += decryptedChar;
+                i++;
+            }
+
+            document.getElementById("result").textContent = "Decrypted Word: " + decryptedWord;
+        }
+    </script>
+</head>
+<body>
+    <h1>Word Encryption/Decryption</h1>
+    <label for="word">Enter a word:</label>
+    <input type="text" id="word">
+    <button onclick="encryptWord()">Encrypt</button>
+
+    <br><br>
+
+    <label for="encrypted-word">Enter an encrypted word:</label>
+    <input type="text" id="encrypted-word">
+    <button onclick="decryptWord()">Decrypt</button>
+
+    <br><br>
+
+    <p id="result"></p>
+</body>
+</html>
